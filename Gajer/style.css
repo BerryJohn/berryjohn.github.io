@@ -8,6 +8,10 @@
 body {
     background-color: #208c71;
     min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .window {
@@ -18,6 +22,7 @@ body {
     border-top: 3px solid #a3a3a3;
     border-right: 3px solid #797979;
     border-bottom: 3px solid #797979;
+    margin: 20px;
 }
 
 #winReg {
@@ -57,14 +62,6 @@ body {
     font-size: 30px;
     display: flex;
     justify-content: space-evenly;
-}
-
-.regHigh {
-    /* background-color: yellow; */
-}
-
-.regLow {
-    /* background-color: purple; */
 }
 
 .reg:nth-child(4) {
@@ -151,5 +148,11 @@ body {
 
     100% {
         opacity: 1;
+    }
+}
+
+@media (max-width:800px) {
+    body {
+        flex-direction: column;
     }
 }
