@@ -24,13 +24,13 @@ class BallGame {
       const maxMove = 10;
       const minMove = -10;
       const moveX =
-        Math.round(e.alpha) > 0
-          ? Math.round(e.alpha) > maxMove
+        Math.round(e.gamma) > 0
+          ? Math.round(e.gamma) > maxMove
             ? maxMove
-            : Math.round(e.alpha)
-          : Math.round(e.alpha) < minMove
+            : Math.round(e.gamma)
+          : Math.round(e.gamma) < minMove
           ? minMove
-          : Math.round(e.alpha);
+          : Math.round(e.gamma);
       const moveY =
         Math.round(e.beta) - 90 > 0
           ? Math.round(e.beta) - 90 > maxMove
