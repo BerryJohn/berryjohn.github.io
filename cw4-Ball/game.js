@@ -1,12 +1,16 @@
 class BallGame {
   constructor() {
     this.ballDirection = {
-      x: 0, // alpha
+      x: 0, // gamma
       y: 0, // beta
     };
     this.ballPosition = {
-      x: 50, // alpha
+      x: 50, // gamma
       y: 50, // beta
+    };
+    this.sensorPosition = {
+      x: 0,
+      y: 0,
     };
     this.ballCanvas = new BallCanvas('#balls');
     this.timer = new Timer();
@@ -19,31 +23,31 @@ class BallGame {
     this.isGameOver = false;
     this.time = 0;
   }
+  // limit == phone angle
+  limitMove(move, minMove, maxMove, limit = 0) {
+    return Math.round(move) - limit > 0
+      ? Math.round(move) - limit > maxMove
+        ? maxMove
+        : Math.round(move) - limit
+      : Math.round(move) - limit < minMove
+      ? minMove
+      : Math.round(move) - limit;
+  }
+
   sensorsInit() {
     window.addEventListener('deviceorientation', (e) => {
-      const maxMove = 10;
-      const minMove = -10;
-      const moveX =
-        Math.round(e.gamma) > 0
-          ? Math.round(e.gamma) > maxMove
-            ? maxMove
-            : Math.round(e.gamma)
-          : Math.round(e.gamma) < minMove
-          ? minMove
-          : Math.round(e.gamma);
-      const moveY =
-        Math.round(e.beta) - 90 > 0
-          ? Math.round(e.beta) - 90 > maxMove
-            ? maxMove
-            : Math.round(e.beta - 90)
-          : Math.round(e.beta) - 90 < minMove
-          ? minMove
-          : Math.round(e.beta - 90);
-
-      this.ballDirection.x = moveX;
-      this.ballDirection.y = moveY;
+      const maxMove = 90;
+      const minMove = -90;
+      this.sensorPosition.x = this.limitMove(e.gamma, minMove, maxMove);
+      this.sensorPosition.y = this.limitMove(e.beta, minMove, maxMove, 45);
     });
   }
+
+  moveBall() {
+    this.ballDirection.x += this.sensorPosition.x / 100;
+    this.ballDirection.y += this.sensorPosition.y / 100;
+  }
+
   createMap() {
     this.ballCanvas.createCanvas();
   }
@@ -62,18 +66,26 @@ class BallGame {
     );
   }
   checkBorders(x, y) {
-    if (x < this.playerRadius)
+    if (x < this.playerRadius) {
       // too much on left
       this.ballPosition.x = this.playerRadius;
-    if (y < this.playerRadius)
+      this.ballDirection.x = 0;
+    }
+    if (y < this.playerRadius) {
       // too much on top
       this.ballPosition.y = this.playerRadius;
-    if (x > this.screenWidth - this.playerRadius)
+      this.ballDirection.y = 0;
+    }
+    if (x > this.screenWidth - this.playerRadius) {
       // too much on right
       this.ballPosition.x = this.screenWidth - this.playerRadius;
-    if (y > this.screenHeight - this.playerRadius)
+      this.ballDirection.x = 0;
+    }
+    if (y > this.screenHeight - this.playerRadius) {
       // too much on down
       this.ballPosition.y = this.screenHeight - this.playerRadius;
+      this.ballDirection.y = 0;
+    }
   }
   drawHole() {
     this.allHoles.forEach((hole, index) => {
@@ -216,6 +228,7 @@ class BallGame {
 
   drawGame() {
     this.checkWin();
+    this.moveBall();
     this.drawPlayer();
     this.drawHole();
     this.drawTeleportHole();
