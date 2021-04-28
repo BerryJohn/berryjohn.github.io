@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="node_modules/chart.js/dist/Chart.js"></script>
+  </head>
+  <body>
+    <div class="charts">
+      <div class="chartCities"></div>
+      <div class="chart">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+    <div class="chartToPin">&#8592;</div>
+    <div class="pins">
+      <div id="searchCity">
+        <input type="text" id="cityName" placeholder="Type City" />
+        <button id="citySubmit">Add</button>
+      </div>
+      <div class="allPins"></div>
+      <script src="arrow.js"></script>
+      <script src="weather.js"></script>
+      <script src="htmlCreator.js"></script>
+      <script src="localstorageWeather.js"></script>
+      <script src="weatherChart.js"></script>
+      <script src="weatherGlobal.js"></script>
+    </div>
+  </body>
+</html>

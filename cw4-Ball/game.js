@@ -59,11 +59,7 @@ class BallGame {
 
     this.checkBorders(this.ballPosition.x, this.ballPosition.y);
 
-    this.ballCanvas.drawPlayer(
-      this.ballPosition.x,
-      this.ballPosition.y,
-      this.playerRadius
-    );
+    this.ballCanvas.drawPlayer(this.ballPosition.x, this.ballPosition.y, this.playerRadius);
   }
   checkBorders(x, y) {
     if (x < this.playerRadius) {
@@ -96,28 +92,16 @@ class BallGame {
     this.teleportHoles.forEach((hole) => {
       const firstHole = hole.one;
       const secondHole = hole.two;
-      this.ballCanvas.drawTeleportHole(
-        firstHole.x,
-        firstHole.y,
-        this.holeRadius
-      );
-      this.ballCanvas.drawTeleportHole(
-        secondHole.x,
-        secondHole.y,
-        this.holeRadius
-      );
+      this.ballCanvas.drawTeleportHole(firstHole.x, firstHole.y, this.holeRadius);
+      this.ballCanvas.drawTeleportHole(secondHole.x, secondHole.y, this.holeRadius);
     });
   }
 
   randomPoint() {
     const maxWidth = this.screenWidth - this.holeRadius;
     const maxHeight = this.screenHeight - this.holeRadius;
-    const randomX =
-      Math.floor(Math.random() * (maxWidth - this.holeRadius)) +
-      this.holeRadius;
-    const randomY =
-      Math.floor(Math.random() * (maxHeight - this.holeRadius)) +
-      this.holeRadius;
+    const randomX = Math.floor(Math.random() * (maxWidth - this.holeRadius)) + this.holeRadius;
+    const randomY = Math.floor(Math.random() * (maxHeight - this.holeRadius)) + this.holeRadius;
     return {
       x: randomX,
       y: randomY,
@@ -154,10 +138,7 @@ class BallGame {
       },
     };
     const firstSidePow = Math.pow(Math.abs(tri.c.y - tri.a.y), 2);
-    const secondSidePow = Math.pow(
-      Math.abs(objcetive.x - this.ballPosition.x),
-      2
-    );
+    const secondSidePow = Math.pow(Math.abs(objcetive.x - this.ballPosition.x), 2);
     const hypotenuseSqrt = Math.sqrt(firstSidePow + secondSidePow);
 
     return hypotenuseSqrt; // distance

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="pinnedNotes"></div>
+    <main>
+    </main>
+    <div class="createNoteBg">
+        <div class="createNote">
+            <input type="text" placeholder="Title" id="noteTitle">
+            <textarea id="noteText"></textarea>
+            <div>
+                Pin:<input type="checkbox" name="pinned" id="notePinned">
+                <label for="pinned"></label>
+                <input type="checkbox" name="colour" id="noteColour" value="rgb(149, 165, 166)">
+                <label for="noteColour" id="labelColour"></label>
+                <div class="colorPicker">
+                    <div class="carrot"></div>
+                    <div class="wisteria"></div>
+                    <div class="nephritis"></div>
+                    <div class="midnightblue"></div>
+                    <div class="alizarin"></div>
+                    <div class="concrate"></div>
+                </div>
+                <button id="noteSubmit">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="editNoteBg">
+        <div class="editNote" data-currid="">
+            <input type="text" placeholder="Title" id="editNoteTitle">
+            <textarea id="editNoteText"></textarea>
+            <div>
+                <button id="removeNote">REMOVE</button>
+                Pin:<input type="checkbox" name="pinned" id="editNotePinned">
+                <label for="pinned"></label>
+                <input type="checkbox" name="colour" id="editNoteColour">
+                <label for="editNoteColour" id="editLabelColour"></label>
+                <div class="editColorPicker">
+                    <div class="carrot"></div>
+                    <div class="wisteria"></div>
+                    <div class="nephritis"></div>
+                    <div class="midnightblue"></div>
+                    <div class="alizarin"></div>
+                    <div class="concrate"></div>
+                </div>
+                <button id="editNoteSubmit">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="addNote">+</div>
+    <script src="note.js"></script>
+    <script src="notes.js"></script>
+    <script src="local.js"></script>
+    <script src="noteUi.js"></script>
+    <script src="colors.js"></script>
+    <script src="main.js"></script>
+
+
+</body>
+
+</html>
